@@ -13,16 +13,6 @@ resource "aws_dynamodb_table" "items" {
     type = "S"
   }
 
-  attribute {
-    name = "expireAt"
-    type = "N"
-  }
-
-  attribute {
-    name = "title"
-    type = "S"
-  }
-
   ttl {
     attribute_name = "expireAt"
     enabled        = true
