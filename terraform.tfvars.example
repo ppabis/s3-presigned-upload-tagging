@@ -1,0 +1,2 @@
+# Copy this file to terraform.tfvars and change the values
+bucket_name="my-photos-123"
