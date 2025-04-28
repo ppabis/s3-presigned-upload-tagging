@@ -24,9 +24,14 @@ resource "aws_api_gateway_integration" "get-list" {
   uri                     = aws_lambda_function.lambda["list"].invoke_arn
 }
 
-resource "aws_api_gateway_deployment" "prod" {
+resource "aws_api_gateway_stage" "prod" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   stage_name  = "prod"
+  deployment_id = aws_api_gateway_deployment.prod.id
+}
+
+resource "aws_api_gateway_deployment" "prod" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
 
   depends_on = [
     aws_api_gateway_integration.get-list
