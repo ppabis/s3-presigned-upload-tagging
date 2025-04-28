@@ -4,6 +4,8 @@ data "archive_file" "zip" {
   output_path = "${path.module}/lambdas.zip"
 }
 
+data "aws_region" "current" {}
+
 resource "aws_lambda_function" "lambda" {
   for_each = toset(["list", "tag", "upload"])
 
@@ -16,6 +18,8 @@ resource "aws_lambda_function" "lambda" {
   environment {
     variables = {
       BUCKET_NAME = aws_s3_bucket.images.bucket
+      TABLE_NAME  = aws_dynamodb_table.items.name
+      REDIRECT = "https://${aws_api_gateway_rest_api.api.id}.execute-api.${data.aws_region.current.name}.amazonaws.com/${var.stage_name}"
     }
   }
 }
