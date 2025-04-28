@@ -1,3 +1,4 @@
 # Copy this file to terraform.tfvars and change the values
 bucket_name="my-photos-123"
 table_name="my-photos-tmp-123"
+api_name="photos-api-123"
