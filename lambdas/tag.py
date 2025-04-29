@@ -2,7 +2,7 @@ import boto3, os
 
 TABLE_NAME = os.environ['TABLE_NAME']
 
-dynamo = boto3.client('dynamodb').Table(TABLE_NAME)
+dynamo = boto3.resource('dynamodb').Table(TABLE_NAME)
 s3 = boto3.client('s3')
 
 def get_from_dynamo(key):
