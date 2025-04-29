@@ -6,8 +6,8 @@ dynamo = boto3.resource('dynamodb').Table(TABLE_NAME)
 s3 = boto3.client('s3')
 
 def get_from_dynamo(key):
-    response = dynamo.get_item( Key={'uid': {'S': key}} )
-    return response['Item']['title']['S'] if 'Item' in response else "Untitled"
+    response = dynamo.get_item( Key={'uid': key} )
+    return response['Item']['title'] if 'Item' in response else "Untitled"
 
 def update_tagging(record):
     key = record['s3']['object']['key']
