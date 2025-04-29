@@ -70,5 +70,5 @@ resource "aws_api_gateway_deployment" "prod" {
 }
 
 output "api-gateway" {
-  value = "${aws_api_gateway_deployment.prod.invoke_url}/${var.stage_name}"
+  value = "${aws_api_gateway_deployment.prod.invoke_url}${var.stage_name}"
 }
