@@ -24,11 +24,6 @@ resource "aws_lambda_function" "lambda" {
   }
 }
 
-resource "aws_lambda_function_url" "lambda_url" {
-  function_name      = aws_lambda_function.lambda["list"].function_name
-  authorization_type = "NONE"
-}
-
 resource "aws_lambda_permission" "api" {
   for_each      = toset(["list", "upload"])
   function_name = aws_lambda_function.lambda[each.key].function_name
@@ -37,6 +32,10 @@ resource "aws_lambda_permission" "api" {
   action        = "lambda:InvokeFunction"
 }
 
-output "lambda_url" {
-  value = aws_lambda_function_url.lambda_url
+resource "aws_lambda_permission" "s3" {
+  statement_id  = "AllowExecutionFromS3"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda["tag"].function_name
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.images.arn
 }
