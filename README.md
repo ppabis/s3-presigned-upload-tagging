@@ -1,6 +1,10 @@
 Upload images to S3 with presigned URL and add tags
 ============================
 
+For more information, see this blog post:
+[https://pabis.eu/blog/2025-05-02-Tag-S3-Objects-Presigned-URL-Upload.html](https://pabis.eu/blog/2025-05-02-Tag-S3-Objects-Presigned-URL-Upload.html)
+[]()
+
 In this project we explore how to upload files to an S3 bucket and add specified
 tags to them.
 
